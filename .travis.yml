@@ -20,12 +20,12 @@ before_install:
 
 install:
   - pip install -Ur src/requirements.txt
-  - pip install -U unittest httpretty loremipsum
+  - pip install -U httpretty loremipsum
 
 script:
-  - cd src
-  - python utils/source_tests.py -v
-  - cd ..
+  - cd $TRAVIS_BUILD_DIR/src
+  - python -m utils.source_tests -v
+  - cd $TRAVIS_BUILD_DIR
 
 after_success:
   - docker build --pull --cache-from "$IMAGE_NAME" --tag "$IMAGE_NAME" .
