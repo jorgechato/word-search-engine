@@ -22,8 +22,8 @@ TODO: architecture
 ## API
 
 Base API contract is stored in the [doc](/doc/contract.json) folder.
-You can see the UI in http://<ENDPOINT>:<PORT>/ and the live documentation in
-http://<ENDPOINT>:<PORT>/swagger.json tho.
+You can see the UI in http://\<ENDPOINT\>:\<PORT\>/ and the live documentation in
+http://\<ENDPOINT\>:\<PORT\>/swagger.json tho.
 
 ## Run
 
