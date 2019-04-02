@@ -1,0 +1,122 @@
+{
+    "swagger": "2.0",
+    "basePath": "/",
+    "paths": {
+        "/health": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "get_health",
+                "tags": [
+                    ""
+                ]
+            }
+        },
+        "/search": {
+            "put": {
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/Word"
+                        }
+                    }
+                },
+                "operationId": "put_search",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Search"
+                        }
+                    },
+                    {
+                        "name": "X-Fields",
+                        "in": "header",
+                        "type": "string",
+                        "format": "mask",
+                        "description": "An optional fields mask"
+                    }
+                ],
+                "tags": [
+                    ""
+                ]
+            }
+        }
+    },
+    "info": {
+        "title": "Word search engine",
+        "version": "1.0",
+        "description": "The service will allow a user to search an specific word in an URL"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "",
+            "description": "Simple word search engine"
+        }
+    ],
+    "definitions": {
+        "Search": {
+            "properties": {
+                "query": {
+                    "$ref": "#/definitions/Query"
+                },
+                "source": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Query": {
+            "properties": {
+                "word": {
+                    "type": "string"
+                },
+                "strict": {
+                    "type": "boolean",
+                    "default": true
+                }
+            },
+            "type": "object"
+        },
+        "Word": {
+            "properties": {
+                "__this": {
+                    "type": "string"
+                },
+                "query": {
+                    "$ref": "#/definitions/Query"
+                },
+                "source": {
+                    "type": "string"
+                },
+                "found": {
+                    "type": "boolean"
+                },
+                "count": {
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "responses": {
+        "ParseError": {
+            "description": "When a mask can't be parsed"
+        },
+        "MaskError": {
+            "description": "When any error occurs on mask"
+        }
+    }
+}
