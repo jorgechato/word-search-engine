@@ -23,7 +23,7 @@ class SourceTest(unittest.TestCase):
         self.assertEqual(end, result, msg="Objects should be equals")
 
     def test_strict_search_one(self):
-        text = "this is a text with only one word."
+        text = "this is a text with only one -word word."
 
         self.assertEqual(
             1,

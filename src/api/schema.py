@@ -5,6 +5,7 @@ from flask_restplus import Model
 query_schema = Model('Query', {
     'word': fields.String,
     'strict': fields.Boolean(default=True),
+    'limiters': fields.List(fields.String(default=""))
 })
 
 response_schema = Model('Word', {

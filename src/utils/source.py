@@ -9,7 +9,7 @@ def get_source(url):
 
 
 def strict_search(s, text):
-    words = re.findall('\w+', text)
+    words = re.findall('(?<!\S)\w+|\w+(?<!\S)', text)
     return collections.Counter(words)[s]
 
 
