@@ -64,6 +64,10 @@
         {
             "name": "",
             "description": "Simple word search engine"
+        },
+        {
+            "name": "",
+            "description": "Simple word search engine metrics"
         }
     ],
     "definitions": {
@@ -86,6 +90,13 @@
                 "strict": {
                     "type": "boolean",
                     "default": true
+                },
+                "limiters": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "default": ""
+                    }
                 }
             },
             "type": "object"

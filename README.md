@@ -25,6 +25,15 @@ Base API contract is stored in the [doc](/doc/contract.json) folder.
 You can see the UI in http://\<ENDPOINT\>:\<PORT\>/ and the live documentation in
 http://\<ENDPOINT\>:\<PORT\>/swagger.json tho.
 
+The body of the request can be strict or with limiters.
+
+In case the query is restricted, the search engine search for a perfect match.
+
+In case the strict value is `false` you need to provide a limiters. In this case
+the word can be encapsulated between this limiters.
+
+You can provide more than one limiter.
+
 ## Run
 
 ```bash

@@ -1,7 +1,8 @@
 {
   "query": {
-    "word": "fit",
-    "strict": false
+    "word": "button",
+    "strict": false,
+		"limiters": ["-", "\""]
   },
   "source": "https://www.virtusize.jp/"
 }
