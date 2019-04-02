@@ -21,7 +21,9 @@ TODO: architecture
 
 ## API
 
-TODO: Swagger file
+Base API contract is stored in the [doc](/doc/contract.json) folder.
+You can see the UI in http://<ENDPOINT>:<PORT>/ and the live documentation in
+http://<ENDPOINT>:<PORT>/swagger.json tho.
 
 ## Run
 
@@ -29,6 +31,12 @@ TODO: Swagger file
 $ FLASK_APP=src/app flask run
 # or
 $ python src/app.py
+```
+
+```bash
+$ curl -X PUT http://<ENDPOINT>:<PORT>/search \
+      -H 'content-type: application/json' \
+      -d @'base.template.json'
 ```
 
 ## Deploy

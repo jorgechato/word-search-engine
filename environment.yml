@@ -4,3 +4,4 @@ dependencies:
   - flask
   - pip:
     - flask-restplus
+    - prometheus-client

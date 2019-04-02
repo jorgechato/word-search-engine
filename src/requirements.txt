@@ -3,3 +3,4 @@ get==1.0.3
 httplib2==0.11.3
 pytest==4.2.0
 flask-restplus==0.12.1
+prometheus-client==0.6.0
