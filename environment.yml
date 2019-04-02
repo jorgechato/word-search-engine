@@ -5,3 +5,6 @@ dependencies:
   - pip:
     - flask-restplus
     - prometheus-client
+    - httpretty
+    - unittest
+    - loremipsum

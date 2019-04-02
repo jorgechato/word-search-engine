@@ -7,6 +7,9 @@ from api.schema import response_schema
 from api.schema import request_schema
 from api.schema import query_schema
 
+from utils.source import get_source
+from utils.source import strict_search
+
 
 ns = Namespace('', description='Simple word search engine')
 
