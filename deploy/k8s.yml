@@ -1,0 +1,93 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: word-search-engine
+  labels:
+    app: word-search-engine
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: word-search-engine
+  template:
+    metadata:
+      labels:
+        app: word-search-engine
+    spec:
+      containers:
+      - name: word-search-engine
+        image: jorgechato/word-search-engine:latest
+        imagePullPolicy: Always
+        env:
+        - name: PORT
+          value: '8000'
+        ports:
+        - containerPort: 8000
+        readinessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /health
+            port: 8000
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 10
+          successThreshold: 1
+          failureThreshold: 20
+        livenessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /health
+            port: 8000
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          timeoutSeconds: 10
+          successThreshold: 1
+          failureThreshold: 10
+      # TODO: needed for the DB connection
+      # imagePullSecrets:
+        # - name:
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: word-search-engine-service
+spec:
+  ports:
+  - port: 8000
+  selector:
+    app: word-search-engine
+  type: LoadBalancer
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: word-search-engine-ingress
+spec:
+  rules:
+  - http:
+    # uncomment this line if you have a cloud k8s with DNS rules
+    # host: word-search-engine.k8s
+      paths:
+      - path: /
+        backend:
+          serviceName: word-search-engine-service
+          servicePort: 8000
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: word-search-engine
+  namespace: default # change to according namespace
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: word-search-engine
+  minReplicas: 1
+  maxReplicas: 2
+  targetCPUUtilizationPercentage: 60

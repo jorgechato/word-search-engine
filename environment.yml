@@ -1,0 +1,6 @@
+name: backend
+dependencies:
+  - python==3.7
+  - flask
+  - pip:
+    - flask-restplus
